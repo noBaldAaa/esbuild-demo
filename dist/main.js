@@ -1097,7 +1097,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect(create, deps) {
+          function useEffect2(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1879,7 +1879,7 @@
           exports.useContext = useContext;
           exports.useDebugValue = useDebugValue;
           exports.useDeferredValue = useDeferredValue;
-          exports.useEffect = useEffect;
+          exports.useEffect = useEffect2;
           exports.useId = useId;
           exports.useImperativeHandle = useImperativeHandle;
           exports.useInsertionEffect = useInsertionEffect;
@@ -23529,8 +23529,29 @@
 
   // src/pages/PageB.tsx
   var import_react2 = __toESM(require_react());
+
+  // src/imgs/esbuild.svg
+  var esbuild_default = 'data:image/svg+xml,<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">%0A  <circle cx="100" cy="100" r="100" fill="%23FFCF00"/>%0A  <path d="M47.5 52.5L95 100l-47.5 47.5m60-95L155 100l-47.5 47.5" fill="none" stroke="%23191919" stroke-width="24"/>%0A</svg>%0A';
+
+  // src/pages/PageB.tsx
   var PageB = () => {
-    return /* @__PURE__ */ import_react2.default.createElement("div", null, /* @__PURE__ */ import_react2.default.createElement("h3", { className: "pageB-test-less-background" }, "\u6211\u662FPageB\u9875\u9762 \u6D4B\u8BD5.less\u6587\u4EF6"));
+    (0, import_react2.useEffect)(() => {
+      const dom = document.getElementById("img");
+      dom.src = esbuild_default;
+    }, []);
+    return /* @__PURE__ */ import_react2.default.createElement("div", null, /* @__PURE__ */ import_react2.default.createElement("h3", { className: "pageB-test-less-background" }, "\u6211\u662FPageB\u9875\u9762 \u6D4B\u8BD5.less\u6587\u4EF6"), /* @__PURE__ */ import_react2.default.createElement("div", null, "\u6D4B\u8BD5\u5728tsx\u4E2D\u901A\u8FC7import\u7684\u65B9\u5F0F\u5BFC\u5165\u56FE\u7247\uFF1A"), /* @__PURE__ */ import_react2.default.createElement(
+      "img",
+      {
+        src: esbuild_default,
+        style: { width: "100px", height: "100px", backgroundSize: "contain" }
+      }
+    ), /* @__PURE__ */ import_react2.default.createElement("div", null, "\u6D4B\u8BD5\u5728tsx\u4E2D\u901A\u8FC7dom\u7684\u65B9\u5F0F\u63D2\u5165\u56FE\u7247\uFF1A"), /* @__PURE__ */ import_react2.default.createElement(
+      "img",
+      {
+        id: "img",
+        style: { width: "100px", height: "100px", backgroundSize: "contain" }
+      }
+    ));
   };
   var PageB_default = PageB;
 
