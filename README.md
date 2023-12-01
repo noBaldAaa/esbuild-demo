@@ -51,3 +51,4 @@
   解决方案：yarn add esbuild-plugin-less
 - 测试 css、module.css、less、module.less 之间的相互引用 均通过
 - 引入字体图标，打包报错：No loader is configured for ".woff2 .ttf .woff .svg .eot"，配置 dataurl loader
+- 测试图片资源，在 module.css 中成功，依次在其他 css/less 文件中成功

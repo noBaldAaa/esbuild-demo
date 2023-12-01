@@ -23517,12 +23517,13 @@
 
   // src/pages/pageA.module.css
   var pageA_default = {
-    "pageA-test-module-background": "pageA_pageA-test-module-background"
+    "pageA-test-module-background": "pageA_pageA-test-module-background",
+    "pageA-background-image": "pageA_pageA-background-image"
   };
 
   // src/pages/PageA.js
   var PageA = () => {
-    return /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement("h3", { className: pageA_default["pageA-test-module-background"] }, "\u6211\u662FPageA\u9875\u9762 \u6D4B\u8BD5.module.css\u6587\u4EF6"));
+    return /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement("h3", { className: pageA_default["pageA-test-module-background"] }, "\u6211\u662FPageA\u9875\u9762 \u6D4B\u8BD5.module.css\u6587\u4EF6"), /* @__PURE__ */ import_react.default.createElement("div", null, " \u6D4B\u8BD5\u901A\u8FC7background-image\u5F15\u5165\u56FE\u7247:"), /* @__PURE__ */ import_react.default.createElement("div", { className: pageA_default["pageA-background-image"] }));
   };
   var PageA_default = PageA;
 
