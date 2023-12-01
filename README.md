@@ -46,4 +46,4 @@
   此时讲解一下 loader 的配置，配置完成后重新打包成功
 - 在 main.css 中测试 css 样式
 - 在 pageA.module.css 中测试 module.css，无需进行配置，如果想让 .module.css 解析成正常的 css 文件，可以使用 css loader 或者 global loader
-- 想法：看这 module.css 的命名规则，这样不会冲突吗？
+- 想法：看这 module.css 的命名规则，这样不会冲突吗？测试下来并不会，因为它先拿 xx.module.css 中的 [xx] + 下划线，然后如果发现重复了就在之前的命名上 + 1，比如之前是 pageA_xxx.css，如果重复了就 page_xxx2.css，看来是多虑了，删掉此测试文件

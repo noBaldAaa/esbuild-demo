@@ -3,6 +3,11 @@
   color: red;
 }
 
+/* src/components/pageA.module.css */
+.pageA_pageA-test-module-css-color2 {
+  color: blue;
+}
+
 /* main.css */
 .main-test-css-color {
   color: orange;

@@ -2383,9 +2383,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React3 = require_react();
+          var React4 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React3.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React4.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -3990,7 +3990,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React3.Children.forEach(props.children, function(child) {
+                  React4.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -12437,7 +12437,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React3.Component().refs;
+          var emptyRefsObject = new React4.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -23510,7 +23510,7 @@
 
   // main.tsx
   var import_client = __toESM(require_client());
-  var import_react2 = __toESM(require_react());
+  var import_react3 = __toESM(require_react());
 
   // src/pages/PageA.js
   var import_react = __toESM(require_react());
@@ -23526,12 +23526,26 @@
   };
   var PageA_default = PageA;
 
+  // src/components/PageA.js
+  var import_react2 = __toESM(require_react());
+
+  // src/components/pageB.module.css
+  var pageB_default = {
+    "pageA-test-module-css-color": "pageB_pageA-test-module-css-color"
+  };
+
+  // src/components/PageA.js
+  var PageA2 = () => {
+    return /* @__PURE__ */ import_react2.default.createElement("div", null, /* @__PURE__ */ import_react2.default.createElement("h3", { className: pageB_default["pageA-test-module-css-color"] }, "\u6211\u662F compoents-PageA \u9875\u9762 \u6D4B\u8BD5.module.css\u6587\u4EF6"));
+  };
+  var PageA_default2 = PageA2;
+
   // main.tsx
   var App = () => {
-    return /* @__PURE__ */ import_react2.default.createElement("div", null, /* @__PURE__ */ import_react2.default.createElement("p", { className: "main-test-css-color" }, "hello esbuild - \u6D4B\u8BD5css\u6587\u4EF6"), /* @__PURE__ */ import_react2.default.createElement(PageA_default, null));
+    return /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("p", { className: "main-test-css-color" }, "hello esbuild - \u6D4B\u8BD5css\u6587\u4EF6"), /* @__PURE__ */ import_react3.default.createElement(PageA_default, null), /* @__PURE__ */ import_react3.default.createElement("br", null), /* @__PURE__ */ import_react3.default.createElement(PageA_default2, null));
   };
   var root = (0, import_client.createRoot)(document.getElementById("root"));
-  root.render(/* @__PURE__ */ import_react2.default.createElement(App, null));
+  root.render(/* @__PURE__ */ import_react3.default.createElement(App, null));
 })();
 /*! Bundled license information:
 
