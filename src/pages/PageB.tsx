@@ -2,7 +2,7 @@ import React from "react";
 
 import "./pageB.less";
 
-const PageA = () => {
+const PageB = () => {
   return (
     <div>
       <h3 className={"pageB-test-less-background"}>
@@ -12,4 +12,4 @@ const PageA = () => {
   );
 };
 
-export default PageA;
+export default PageB;

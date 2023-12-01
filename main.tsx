@@ -3,6 +3,7 @@ import React from "react";
 
 import PageA from "./src/pages/PageA.js";
 import PageB from "./src/pages/PageB";
+import PageC from "./src/pages/PageC";
 
 import "./main.css";
 
@@ -11,8 +12,10 @@ const App = () => {
     <div>
       <p className="main-test-css-color">hello esbuild - 测试css文件</p>
       <PageA />
-      <br></br>
+      <div style={{ height: "1px", background: "#666" }}></div>
       <PageB />
+      <div style={{ height: "1px", background: "#666" }}></div>
+      <PageC />
     </div>
   );
 };

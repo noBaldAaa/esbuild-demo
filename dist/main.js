@@ -2383,9 +2383,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React4 = require_react();
+          var React5 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React4.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React5.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -3990,7 +3990,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React4.Children.forEach(props.children, function(child) {
+                  React5.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -12437,7 +12437,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React4.Component().refs;
+          var emptyRefsObject = new React5.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -23510,7 +23510,7 @@
 
   // main.tsx
   var import_client = __toESM(require_client());
-  var import_react3 = __toESM(require_react());
+  var import_react4 = __toESM(require_react());
 
   // src/pages/PageA.js
   var import_react = __toESM(require_react());
@@ -23528,17 +23528,31 @@
 
   // src/pages/PageB.tsx
   var import_react2 = __toESM(require_react());
-  var PageA2 = () => {
+  var PageB = () => {
     return /* @__PURE__ */ import_react2.default.createElement("div", null, /* @__PURE__ */ import_react2.default.createElement("h3", { className: "pageB-test-less-background" }, "\u6211\u662FPageB\u9875\u9762 \u6D4B\u8BD5.less\u6587\u4EF6"));
   };
-  var PageB_default = PageA2;
+  var PageB_default = PageB;
+
+  // src/pages/PageC.tsx
+  var import_react3 = __toESM(require_react());
+
+  // src/pages/pageC.module.less
+  var pageC_module_default = {
+    "pageC-test-module-less-background": "pageC_module_pageC-test-module-less-background"
+  };
+
+  // src/pages/PageC.tsx
+  var PageC = () => {
+    return /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("h3", { className: pageC_module_default["pageC-test-module-less-background"] }, "\u6211\u662FPageC\u9875\u9762 \u6D4B\u8BD5.module.less\u6587\u4EF6"));
+  };
+  var PageC_default = PageC;
 
   // main.tsx
   var App = () => {
-    return /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("p", { className: "main-test-css-color" }, "hello esbuild - \u6D4B\u8BD5css\u6587\u4EF6"), /* @__PURE__ */ import_react3.default.createElement(PageA_default, null), /* @__PURE__ */ import_react3.default.createElement("br", null), /* @__PURE__ */ import_react3.default.createElement(PageB_default, null));
+    return /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("p", { className: "main-test-css-color" }, "hello esbuild - \u6D4B\u8BD5css\u6587\u4EF6"), /* @__PURE__ */ import_react4.default.createElement(PageA_default, null), /* @__PURE__ */ import_react4.default.createElement("div", { style: { height: "1px", background: "#666" } }), /* @__PURE__ */ import_react4.default.createElement(PageB_default, null), /* @__PURE__ */ import_react4.default.createElement("div", { style: { height: "1px", background: "#666" } }), /* @__PURE__ */ import_react4.default.createElement(PageC_default, null));
   };
   var root = (0, import_client.createRoot)(document.getElementById("root"));
-  root.render(/* @__PURE__ */ import_react3.default.createElement(App, null));
+  root.render(/* @__PURE__ */ import_react4.default.createElement(App, null));
 })();
 /*! Bundled license information:
 

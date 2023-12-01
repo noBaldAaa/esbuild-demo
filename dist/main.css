@@ -9,6 +9,11 @@
   color: blue;
 }
 
+/* src/pages/pageC.module.less */
+.pageC_module_pageC-test-module-less-background {
+  background-color: yellow;
+}
+
 /* main.css */
 .main-test-css-color {
   color: orange;
