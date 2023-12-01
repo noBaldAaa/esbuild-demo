@@ -15,7 +15,7 @@
 - 进阶
   1、资源的进阶需求：当图片小于 8kb 时，转换为 base64 格式（也就是如何在 file 和 dataurl 中自由切换）
   2、排除部分第三方包，使用 cdn（排除 react、react-dom）
-  3、代码压缩（html、js、css）✅
+  3、代码压缩（html、js、css）
   4、css 加厂商后缀
   5、css 兼容 老浏览器
   6、js 兼容老浏览器 + 新 API 转换
@@ -47,3 +47,5 @@
 - 在 main.css 中测试 css 样式
 - 在 pageA.module.css 中测试 module.css，无需进行配置，如果想让 .module.css 解析成正常的 css 文件，可以使用 css loader 或者 global loader
 - 想法：看这 module.css 的命名规则，这样不会冲突吗？测试下来并不会，因为它先拿 xx.module.css 中的 [xx] + 下划线，然后如果发现重复了就在之前的命名上 + 1，比如之前是 pageA_xxx.css，如果重复了就 page_xxx2.css，看来是多虑了，删掉此测试文件
+- 新建 PageB 测试 less 文件，报错：No loader is configured for ".less"。
+  解决方案：yarn add esbuild-plugin-less

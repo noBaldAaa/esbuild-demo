@@ -1,4 +1,5 @@
 const esbuild = require("esbuild");
+const { lessLoader: lessLoaderPlugin } = require("esbuild-plugin-less");
 
 const options = {
   // 入口文件
@@ -31,6 +32,14 @@ const options = {
     ".txt": "text",
     ".json": "json", // 默认就支持
   },
+  plugins: [
+    lessLoaderPlugin({
+      // 主题配置
+      globalVars: {
+        primaryColor: "blue",
+      },
+    }),
+  ],
 };
 
 esbuild.build(options).catch((e) => console.log(e));

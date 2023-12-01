@@ -23526,23 +23526,16 @@
   };
   var PageA_default = PageA;
 
-  // src/components/PageA.js
+  // src/pages/PageB.tsx
   var import_react2 = __toESM(require_react());
-
-  // src/components/pageB.module.css
-  var pageB_default = {
-    "pageA-test-module-css-color": "pageB_pageA-test-module-css-color"
-  };
-
-  // src/components/PageA.js
   var PageA2 = () => {
-    return /* @__PURE__ */ import_react2.default.createElement("div", null, /* @__PURE__ */ import_react2.default.createElement("h3", { className: pageB_default["pageA-test-module-css-color"] }, "\u6211\u662F compoents-PageA \u9875\u9762 \u6D4B\u8BD5.module.css\u6587\u4EF6"));
+    return /* @__PURE__ */ import_react2.default.createElement("div", null, /* @__PURE__ */ import_react2.default.createElement("h3", { className: "pageB-test-less-background" }, "\u6211\u662FPageB\u9875\u9762 \u6D4B\u8BD5.less\u6587\u4EF6"));
   };
-  var PageA_default2 = PageA2;
+  var PageB_default = PageA2;
 
   // main.tsx
   var App = () => {
-    return /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("p", { className: "main-test-css-color" }, "hello esbuild - \u6D4B\u8BD5css\u6587\u4EF6"), /* @__PURE__ */ import_react3.default.createElement(PageA_default, null), /* @__PURE__ */ import_react3.default.createElement("br", null), /* @__PURE__ */ import_react3.default.createElement(PageA_default2, null));
+    return /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("p", { className: "main-test-css-color" }, "hello esbuild - \u6D4B\u8BD5css\u6587\u4EF6"), /* @__PURE__ */ import_react3.default.createElement(PageA_default, null), /* @__PURE__ */ import_react3.default.createElement("br", null), /* @__PURE__ */ import_react3.default.createElement(PageB_default, null));
   };
   var root = (0, import_client.createRoot)(document.getElementById("root"));
   root.render(/* @__PURE__ */ import_react3.default.createElement(App, null));
