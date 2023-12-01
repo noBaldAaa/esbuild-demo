@@ -1,0 +1,7 @@
+{
+  "name": "esbuild-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "wxy <102939294+noBaldAaa@users.noreply.github.com>",
+  "license": "MIT"
+}
