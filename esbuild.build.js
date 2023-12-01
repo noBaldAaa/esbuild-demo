@@ -3,6 +3,8 @@ const path = require("path");
 const fs = require("fs");
 const { lessLoader: lessLoaderPlugin } = require("esbuild-plugin-less");
 const { htmlPlugin } = require("@craftamap/esbuild-plugin-html");
+const inlineImagePlugin = require("esbuild-plugin-inline-image");
+const { clean } = require("esbuild-plugin-clean");
 
 const entryPoints = ["main.tsx"];
 
@@ -89,6 +91,7 @@ const options = {
         },
       ],
     }),
+    // copy plugin
     {
       name: "copy",
       setup(build) {
@@ -172,6 +175,12 @@ const options = {
         build.onEnd(() => copy(copyOptions));
       },
     },
+    inlineImagePlugin({
+      limit: 3 * 1024, // 默认为10000，超过这个数用file loader，否则用dataurl loader
+      // 这里如果 loader 中配置了 png 格式用 file loader，但是插件这里又配了，以这里的为准
+      extensions: ["jpg", "jpeg", "png", "gif", "svg", "webp", "avif"], // 要处理的文件格式，默认为这些
+    }),
+    clean({ patterns: "dist/*" }),
   ],
 };
 

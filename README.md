@@ -5,14 +5,14 @@
 ## 调研路径
 
 - 基础
-  1、是否支持 js、jsx、ts、tsx（在 js 中写 jsx）
-  2、是否支持简单的 css、module css、less、module less（包括相互之间的引用）
-  3、是否支持字体图标
-  4、是否支持常规的图片资源（在 jsx/tsx/css/less/html 中的引用）
-  5、是否支持其他不常见的图片格式处理
-  6、其他资源文件处理：.json .txt .data 等
+  1、是否支持 js、jsx、ts、tsx（在 js 中写 jsx）✅
+  2、是否支持简单的 css、module css、less、module less ✅（包括相互之间的引用）
+  3、是否支持字体图标 ✅
+  4、是否支持常规的图片资源（在 jsx/tsx/css/less/html 中的引用） ✅
+  5、是否支持其他不常见的图片格式处理 ✅
+  6、其他资源文件处理：.json .txt .data 等 ✅
   7、配置路径别名缩短引用路径
-  8、html 模版
+  8、html 模版 ✅
 - 进阶
   1、资源的进阶需求：当图片小于 8kb 时，转换为 base64 格式（也就是如何在 file 和 dataurl 中自由切换）
   2、排除部分第三方包，使用 cdn（排除 react、react-dom）
@@ -94,3 +94,5 @@
   16、empty (Empty Loader): 生成一个空的模块。
   例子： 用于占位，或在某些情况下需要一个空模块时使用。
 - 演示一下 file-loader 和 dataurl loader，这两个比较常用
+- 当图片小于 xkb 时，转换为 base64 格式，怎么做？yarn add esbuild-plugin-inline-image
+- 每次删 dist 目录太麻烦，使用 esbuild-plugin-clean 插件
