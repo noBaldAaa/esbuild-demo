@@ -33,7 +33,7 @@
   2、开发服务器
   3、api 请求代理
 
-## 1、初始化项目
+## 实战调研
 
 - yarn init
 - yarn add react react-dom typescript
@@ -93,4 +93,4 @@
   例子： 用于将特定文件原封不动地复制到输出目录。
   16、empty (Empty Loader): 生成一个空的模块。
   例子： 用于占位，或在某些情况下需要一个空模块时使用。
-- 问题：base64 loader 和 dataurl 有啥区别
+- 演示一下 file-loader 和 dataurl loader，这两个比较常用

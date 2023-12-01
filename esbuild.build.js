@@ -32,7 +32,7 @@ const options = {
     ".woff2": "dataurl", // 为了支持字体图标
     ".svg": "dataurl", // 为了支持字体图标
 
-    ".png": "file",
+    ".jpg": "dataurl",
 
     ".txt": "text", // 默认就是这个
     ".json": "json", // 默认就是这个
