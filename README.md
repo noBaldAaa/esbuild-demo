@@ -5,7 +5,7 @@
 ## 调研路径
 
 - 基础
-  1、是否支持 js、jsx、ts、tsx
+  1、是否支持 js、jsx、ts、tsx（在 js 中写 jsx）
   2、是否支持简单的 css、module css、less、module less（包括相互之间的引用）
   3、是否支持字体图标
   4、是否支持常规的图片资源（在 jsx/tsx/css/less/html 中的引用）
@@ -41,3 +41,6 @@
 - 配置基础的 esbuild 配置文件，并尝试打包
 - 在 dist 目录下手动生成一个 html 模版文件，并看 react 有没有成功生效
 - 尝试将文件后缀改成 .jsx .js 后缀均能成功打包并生效
+- 在 js 中写 jsx 并引用后重新打包，此时会报错：The esbuild loader for this file is currently set to "js" but it must be set to "jsx" to be able
+  to parse JSX syntax. You can use "loader: { '.js': 'jsx' }" to do that。
+  此时讲解一下 loader 的配置，配置完成后重新打包成功
