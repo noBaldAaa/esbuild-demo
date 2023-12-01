@@ -12,6 +12,7 @@
   5、是否支持其他不常见的图片格式处理
   6、其他资源文件处理：.json .txt .data 等
   7、配置路径别名缩短引用路径
+  8、html 模版
 - 进阶
   1、资源的进阶需求：当图片小于 8kb 时，转换为 base64 格式（也就是如何在 file 和 dataurl 中自由切换）
   2、排除部分第三方包，使用 cdn（排除 react、react-dom）
@@ -53,3 +54,4 @@
 - 引入字体图标，打包报错：No loader is configured for ".woff2 .ttf .woff .svg .eot"，配置 dataurl loader
 - 测试图片资源，在 module.css 中成功，依次在其他 css/less 文件中成功
 - 测试图片资源，在 js 中引入图片成功
+- 为了测试 html 中引入图片，我们先创建 html 模版，再者我们现在是手动在 dist 中创建 html 文件的，依赖文件也是我们手动添加的，这样肯定不行
