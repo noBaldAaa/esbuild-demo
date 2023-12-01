@@ -2,6 +2,36 @@
 
 用于 esbuild 验证和学习
 
+## 调研路径
+
+- 基础
+  1、是否支持 js、jsx、ts、tsx
+  2、是否支持简单的 css、module css、less、module less（包括相互之间的引用）
+  3、是否支持字体图标
+  4、是否支持常规的图片资源（在 jsx/tsx/css/less/html 中的引用）
+  5、是否支持其他不常见的图片格式处理
+  6、其他资源文件处理：.json .txt .data 等
+  7、配置路径别名缩短引用路径
+- 进阶
+  1、资源的进阶需求：当图片小于 8kb 时，转换为 base64 格式（也就是如何在 file 和 dataurl 中自由切换）
+  2、排除部分第三方包，使用 cdn（排除 react、react-dom）
+  3、代码压缩（html、js、css）✅
+  4、css 加厂商后缀
+  5、css 兼容 老浏览器
+  6、js 兼容老浏览器 + 新 API 转换
+  7、tree shaking
+  8、基本的代码分割、分包、测试动态加载（import (xx).then(xxx)）
+  9、提取第三方包成一个单独的包(做不到)
+  10、文件加 hash
+  11、source-map（没有 webpack 那么多的选项）
+  12、每次打包前清空 dist 目录 ）
+  13、按照打包后的文件类型进行分类
+  14、如何获取环境变量：看看是 dev 还是 prod(define 属性)
+- 可选
+  1、构建前进行 ts 类型检测（可选）webpack 用这个 fork-ts-checker-webpack-plugin
+  2、开发服务器
+  3、api 请求代理
+
 ## 1、初始化项目
 
 - yarn init
@@ -10,3 +40,4 @@
 - 修改部分配置 yarn add @types/react @types/react-dom
 - 配置基础的 esbuild 配置文件，并尝试打包
 - 在 dist 目录下手动生成一个 html 模版文件，并看 react 有没有成功生效
+- 尝试将文件后缀改成 .jsx .js 后缀均能成功打包并生效
