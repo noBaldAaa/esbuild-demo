@@ -23514,8 +23514,15 @@
 
   // src/pages/PageA.js
   var import_react = __toESM(require_react());
+
+  // src/pages/pageA.module.css
+  var pageA_default = {
+    "pageA-test-module-css-color": "pageA_pageA-test-module-css-color"
+  };
+
+  // src/pages/PageA.js
   var PageA = () => {
-    return /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement("h3", null, "\u6211\u662FPageA\u9875\u9762"));
+    return /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement("h3", { className: pageA_default["pageA-test-module-css-color"] }, "\u6211\u662FPageA\u9875\u9762 \u6D4B\u8BD5.module.css\u6587\u4EF6"));
   };
   var PageA_default = PageA;
 

@@ -44,3 +44,6 @@
 - 在 js 中写 jsx 并引用后重新打包，此时会报错：The esbuild loader for this file is currently set to "js" but it must be set to "jsx" to be able
   to parse JSX syntax. You can use "loader: { '.js': 'jsx' }" to do that。
   此时讲解一下 loader 的配置，配置完成后重新打包成功
+- 在 main.css 中测试 css 样式
+- 在 pageA.module.css 中测试 module.css，无需进行配置，如果想让 .module.css 解析成正常的 css 文件，可以使用 css loader 或者 global loader
+- 想法：看这 module.css 的命名规则，这样不会冲突吗？
