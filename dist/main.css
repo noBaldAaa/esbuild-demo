@@ -3,15 +3,18 @@
   background-color: #ddd;
 }
 
+/* src/pages/pageC.module.less */
+.pageC_module_pageC-test-module-less-background {
+  background-color: #666;
+}
+
 /* src/pages/pageB.less */
 .pageB-test-less-background {
   background-color: #999;
   color: blue;
 }
-
-/* src/pages/pageC.module.less */
-.pageC_module_pageC-test-module-less-background {
-  background-color: #666;
+div p {
+  color: orange;
 }
 
 /* main.css */
