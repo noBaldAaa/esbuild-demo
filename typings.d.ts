@@ -4,6 +4,16 @@ declare module "*.js" {
   export default content;
 }
 
+declare module "*.tsx" {
+  const content: any;
+  export default content;
+}
+
+declare module "*.json" {
+  const content: any;
+  export default content;
+}
+
 declare module "*.less" {
   const content: { [className: string]: string };
   export default content;

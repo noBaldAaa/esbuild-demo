@@ -41,6 +41,11 @@ const options = {
   },
   // 此选项告诉 esbuild 以 JSON 格式生成一些有关构建的元数据。以下示例将元数据放入名为 的文件中meta.json
   // 想要用 htmlPlugin 插件，必须开启metafile
+  alias: {
+    "@": path.resolve(__dirname, "./src"),
+    "@imgs": path.resolve(__dirname, "./src/imgs"),
+    "@pages": path.resolve(__dirname, "./src/pages"),
+  },
   metafile: true,
   plugins: [
     lessLoaderPlugin({

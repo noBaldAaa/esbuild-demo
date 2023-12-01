@@ -1,14 +1,14 @@
 import { createRoot } from "react-dom/client";
 import React from "react";
 
-import PageA from "./src/pages/PageA.js";
-import PageB from "./src/pages/PageB";
-import PageC from "./src/pages/PageC";
+import PageA from "@pages/PageA.js";
+import PageB from "@pages/PageB.tsx";
+import PageC from "@pages/PageC.tsx";
 
-import data1 from "./src/mock/1.json";
-import data2 from "./src/mock/2.txt";
+import data1 from "@/mock/1.json";
+import data2 from "@/mock/2.txt";
 
-import WEBPACK_LOGO_IMG from "./src/imgs/webpack-logo.jpg";
+import WEBPACK_LOGO_IMG from "@imgs/webpack-logo.jpg";
 
 import "./main.css";
 

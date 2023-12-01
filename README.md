@@ -14,7 +14,7 @@
   7、配置路径别名缩短引用路径
   8、html 模版 ✅
 - 进阶
-  1、资源的进阶需求：当图片小于 8kb 时，转换为 base64 格式（也就是如何在 file 和 dataurl 中自由切换）
+  1、资源的进阶需求：当图片小于 8kb 时，转换为 base64 格式（也就是如何在 file 和 dataurl 中自由切换）✅
   2、排除部分第三方包，使用 cdn（排除 react、react-dom）
   3、代码压缩（html、js、css）
   4、css 加厂商后缀
@@ -96,3 +96,4 @@
 - 演示一下 file-loader 和 dataurl loader，这两个比较常用
 - 当图片小于 xkb 时，转换为 base64 格式，怎么做？yarn add esbuild-plugin-inline-image
 - 每次删 dist 目录太麻烦，使用 esbuild-plugin-clean 插件
+- 配置别名，天坑来了！！！也就是 当我们 使用 @ / xx 的时候，自动替换到 src/ xx 目录下，当我们使用 @imgs 的时候自动替换到 src/imas 目录下。这生活大多数人肯定都去找 alias 这个 api 了，为啥这个项目可以！！！
