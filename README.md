@@ -60,4 +60,37 @@
 - 在 css、js、html 中引入图片成功
 - 支持其他不常见的图片格式处理：可以使用 file loader 或 dataurl 进行处理
 - 对 data、txt、json 文件进行解析
-- loader 总结：
+- loader 总结：在 esbuild 中，loader 用于处理不同类型的文件，并将它们转换为 JavaScript 模块或其他适当的输出。以下是一些常见的 loader 类型及其作用：
+  1、js (JavaScript Loader): 处理 JavaScript 文件。
+  例子： import 或 require JavaScript 文件时，该 loader 将处理这些文件。
+  2、jsx (JSX Loader):处理包含 JSX 语法的 JavaScript 文件。
+  例子： 用于处理 React 组件中的 JSX 语法。
+  3、ts (TypeScript Loader):处理 TypeScript 文件。
+  例子： 用于处理 TypeScript 代码文件。
+  4、tsx (TSX Loader): 处理包含 JSX 语法的 TypeScript 文件。
+  例子： 用于处理包含 JSX 语法的 TypeScript 代码文件。
+  5、css (CSS Loader): 处理 CSS 文件。
+  例子： import CSS 文件时，该 loader 处理这些文件。
+  6、local (Local Loader): 处理局部 CSS 文件，支持 CSS 模块化。
+  例子： import styles from './styles.module.css';
+  7、global (Global Loader):处理全局 CSS 文件，不启用 CSS 模块化。
+  例子： import './styles.css';
+  8、json (JSON Loader):处理 JSON 文件。
+  例子： import JSON 文件时，该 loader 处理这些文件。
+  9、file (File Loader):处理二进制文件，例如图像、字体等。该加载程序会将文件复制到输出目录，并将文件名作为字符串嵌入到包中。和 webpack 的 file-loader 一样
+  例子： import 图像或字体文件时，该 loader 处理这些文件。
+  10、text (Text Loader): 处理文本文件。
+  例子： import 文本文件时，该 loader 处理这些文件。
+  11、base64 (Base64 Loader):将文件转换为 Base64 编码。
+  例子： 可用于将小型图像文件直接嵌入 JavaScript 代码中。
+  12、dataurl (Data URL Loader): 将文件转换为 Data URL 格式。
+  例子： 类似于 Base64 Loader，将文件直接嵌入到代码中，但以 Data URL 形式。
+  13、binary (Binary Loader):处理二进制文件。
+  例子： 用于处理不需要转换的二进制文件。
+  14、text (Text Loader):处理文本文件。
+  例子： import 文本文件时，该 loader 处理这些文件。
+  15、copy (Copy Loader): 复制文件到输出目录而不进行处理。
+  例子： 用于将特定文件原封不动地复制到输出目录。
+  16、empty (Empty Loader): 生成一个空的模块。
+  例子： 用于占位，或在某些情况下需要一个空模块时使用。
+- 问题：base64 loader 和 dataurl 有啥区别
