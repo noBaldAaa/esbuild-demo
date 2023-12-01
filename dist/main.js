@@ -23521,7 +23521,7 @@
 
   // main.tsx
   var App = () => {
-    return /* @__PURE__ */ import_react2.default.createElement("div", null, /* @__PURE__ */ import_react2.default.createElement("p", null, "hello esbuild"), /* @__PURE__ */ import_react2.default.createElement(PageA_default, null));
+    return /* @__PURE__ */ import_react2.default.createElement("div", null, /* @__PURE__ */ import_react2.default.createElement("p", { className: "main-test-css-color" }, "hello esbuild - \u6D4B\u8BD5css\u6587\u4EF6"), /* @__PURE__ */ import_react2.default.createElement(PageA_default, null));
   };
   var root = (0, import_client.createRoot)(document.getElementById("root"));
   root.render(/* @__PURE__ */ import_react2.default.createElement(App, null));

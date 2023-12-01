@@ -3,10 +3,12 @@ import React from "react";
 
 import PageA from "./src/pages/PageA.js";
 
+import "./main.css";
+
 const App = () => {
   return (
     <div>
-      <p>hello esbuild</p>
+      <p className="main-test-css-color">hello esbuild - 测试css文件</p>
       <PageA />
     </div>
   );
