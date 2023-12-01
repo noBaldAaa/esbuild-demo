@@ -5,10 +5,9 @@ const App = () => {
   return (
     <div>
       <span className="iconfont icon-delet"></span>
-      <PageA />
     </div>
   );
 };
 
-const root = createRoot(document.getElementById("root"));
+const root = createRoot(document.getElementById("root") as HTMLElement);
 root.render(<App />);

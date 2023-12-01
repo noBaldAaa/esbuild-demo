@@ -11,7 +11,7 @@
     /* 语言和环境 */
     "target": "es2016" /* 设置生成的 JavaScript 的 JavaScript 语言版本，并包含兼容的库声明。 */,
     // "lib": [],                                        /* 指定一组捆绑的库声明文件，描述目标运行时环境。 */
-    // "jsx": "preserve",                                /* 指定生成的 JSX 代码。 */
+    "jsx": "react" /* 指定生成的 JSX 代码。 */,
     // "experimentalDecorators": true,                   /* 启用对实验性装饰器的支持。 */
     // "emitDecoratorMetadata": true,                    /* 为源文件中带有装饰器的声明生成设计类型元数据。 */
     // "jsxFactory": "",                                 /* 指定在目标 React JSX 发布时使用的 JSX 工厂函数，例如 'React.createElement' 或 'h'。 */
@@ -23,9 +23,9 @@
     // "moduleDetection": "auto",                        /* 控制使用哪种方法检测模块格式的 JS 文件。 */
 
     /* 模块 */
-    "module": "commonjs" /* 指定生成的模块代码。 */,
+    "module": "esnext" /* 指定生成的模块代码。 */,
     // "rootDir": "./",                                  /* 指定源文件中的根文件夹。 */
-    // "moduleResolution": "node10",                     /* 指定 TypeScript 如何从给定的模块说明符查找文件。 */
+    "moduleResolution": "Node" /* 指定 TypeScript 如何从给定的模块说明符查找文件。 */,
     // "baseUrl": "./",                                  /* 指定用于解析非相对模块名称的基本目录。 */
     // "paths": {},                                      /* 指定重新映射导入以进行附加查找的一组条目。 */
     // "rootDirs": [],                                   /* 允许将多个文件夹视为一个文件夹以解析模块。 */

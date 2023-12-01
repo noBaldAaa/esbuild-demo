@@ -7,3 +7,4 @@
 - yarn init
 - yarn add react react-dom typescript
 - npx tsx --init
+- 修改部分配置 yarn add @types/react @types/react-dom
