@@ -23569,8 +23569,18 @@
   };
   var PageC_default = PageC;
 
+  // src/mock/1.json
+  var __default = {
+    name: "\u4E0D\u8981\u79C3\u5934\u554A"
+  };
+
+  // src/mock/2.txt
+  var __default2 = '"hello \uFF0C\u6211\u662F data \u683C\u5F0F"';
+
   // main.tsx
   var App = () => {
+    console.log(__default, "data1");
+    console.log(__default2, "data2");
     return /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("p", null, "main.js\u5165\u53E3\u6587\u4EF6\uFF1A"), /* @__PURE__ */ import_react4.default.createElement("p", { className: "main-test-css-background" }, "hello esbuild - \u6D4B\u8BD5css\u6587\u4EF6"), /* @__PURE__ */ import_react4.default.createElement(PageA_default, null), /* @__PURE__ */ import_react4.default.createElement("div", { style: { height: "1px", background: "#666" } }), /* @__PURE__ */ import_react4.default.createElement(PageB_default, null), /* @__PURE__ */ import_react4.default.createElement("div", { style: { height: "1px", background: "#666" } }), /* @__PURE__ */ import_react4.default.createElement(PageC_default, null), /* @__PURE__ */ import_react4.default.createElement("div", { style: { height: "1px", background: "#666" } }), /* @__PURE__ */ import_react4.default.createElement("div", { style: { margin: "10px" } }, "\u6D4B\u8BD5\u56FE\u6807\uFF1A ", /* @__PURE__ */ import_react4.default.createElement("span", { className: "iconfont icon-delet" })));
   };
   var root = (0, import_client.createRoot)(document.getElementById("root"));

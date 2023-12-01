@@ -5,9 +5,14 @@ import PageA from "./src/pages/PageA.js";
 import PageB from "./src/pages/PageB";
 import PageC from "./src/pages/PageC";
 
+import data1 from "./src/mock/1.json";
+import data2 from "./src/mock/2.txt";
+
 import "./main.css";
 
 const App = () => {
+  console.log(data1, "data1");
+  console.log(data2, "data2");
   return (
     <div>
       <p>main.js入口文件：</p>

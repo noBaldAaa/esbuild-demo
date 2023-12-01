@@ -58,3 +58,6 @@
 - 为了生效，这时候用 @craftamap/esbuild-plugin-html 插件,这个插件很强大，解读一下，这里有个坑，想要用这个插件，必须开启 metafile：true
 - 为了能看到 html 中的图片，我们还需要将 public 中的图片复制到 dist 目录下，这里再用一个插件，看了一圈都不太行，还是自己动手写一个吧.....，下一篇重点讲插件机制和如何写插件。
 - 在 css、js、html 中引入图片成功
+- 支持其他不常见的图片格式处理：可以使用 file loader 或 dataurl 进行处理
+- 对 data、txt、json 文件进行解析
+- loader 总结：

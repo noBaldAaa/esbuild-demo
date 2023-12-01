@@ -34,9 +34,8 @@ const options = {
 
     ".png": "file",
 
-    // 默认就是这个
-    ".txt": "text",
-    ".json": "json", // 默认就支持
+    ".txt": "text", // 默认就是这个
+    ".json": "json", // 默认就是这个
   },
   // 此选项告诉 esbuild 以 JSON 格式生成一些有关构建的元数据。以下示例将元数据放入名为 的文件中meta.json
   // 想要用 htmlPlugin 插件，必须开启metafile
