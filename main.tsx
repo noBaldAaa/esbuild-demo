@@ -10,6 +10,7 @@ import "./main.css";
 const App = () => {
   return (
     <div>
+      <p>main.js入口文件：</p>
       <p className="main-test-css-background">hello esbuild - 测试css文件</p>
       <PageA />
       <div style={{ height: "1px", background: "#666" }}></div>

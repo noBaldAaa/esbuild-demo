@@ -8,6 +8,7 @@
     "build": "node ./esbuild.build.js"
   },
   "dependencies": {
+    "@craftamap/esbuild-plugin-html": "^0.6.1",
     "@types/react": "^18.2.39",
     "@types/react-dom": "^18.2.17",
     "esbuild": "^0.19.8",
