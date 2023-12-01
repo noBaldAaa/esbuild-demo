@@ -16,6 +16,10 @@ const App = () => {
       <PageB />
       <div style={{ height: "1px", background: "#666" }}></div>
       <PageC />
+      <div style={{ height: "1px", background: "#666" }}></div>
+      <div style={{ margin: "10px" }}>
+        测试图标： <span className="iconfont icon-delet"></span>
+      </div>
     </div>
   );
 };

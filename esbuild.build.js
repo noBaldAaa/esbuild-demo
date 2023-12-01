@@ -21,11 +21,12 @@ const options = {
     // file 这个 loader 会将文件复制到输出目录，并将文件名返回到源代码中
     // 这里用 dataurl loader，相当于将字体图标都转换为 Base 64 格式插入到了 App.css 文件中
     // 这里用file loader 的话，就相当于拷贝
-    ".ttf": "file", // 为了支持字体图标
-    ".eot": "file", // 为了支持字体图标
-    ".woff": "file", // 为了支持字体图标
-    ".woff2": "file", // 为了支持字体图标
-    ".svg": "file", // 为了支持字体图标
+    ".ttf": "dataurl", // 为了支持字体图标
+    ".eot": "dataurl", // 为了支持字体图标
+    ".woff": "dataurl", // 为了支持字体图标
+    ".woff2": "dataurl", // 为了支持字体图标
+    ".svg": "dataurl", // 为了支持字体图标
+
     ".png": "file",
 
     // 默认就是这个

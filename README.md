@@ -50,3 +50,4 @@
 - 新建 PageB 测试 less 文件，报错：No loader is configured for ".less"。
   解决方案：yarn add esbuild-plugin-less
 - 测试 css、module.css、less、module.less 之间的相互引用 均通过
+- 引入字体图标，打包报错：No loader is configured for ".woff2 .ttf .woff .svg .eot"，配置 dataurl loader
