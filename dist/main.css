@@ -1,6 +1,6 @@
 /* src/pages/pageA.module.css */
-.pageA_pageA-test-module-css-color {
-  color: red;
+.pageA_pageA-test-module-background {
+  background-color: #ddd;
 }
 
 /* src/pages/pageB.less */
@@ -11,10 +11,10 @@
 
 /* src/pages/pageC.module.less */
 .pageC_module_pageC-test-module-less-background {
-  background-color: yellow;
+  background-color: #666;
 }
 
 /* main.css */
-.main-test-css-color {
-  color: orange;
+.main-test-css-background {
+  background-color: #eee;
 }

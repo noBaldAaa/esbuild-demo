@@ -49,3 +49,7 @@
 - 想法：看这 module.css 的命名规则，这样不会冲突吗？测试下来并不会，因为它先拿 xx.module.css 中的 [xx] + 下划线，然后如果发现重复了就在之前的命名上 + 1，比如之前是 pageA_xxx.css，如果重复了就 page_xxx2.css，看来是多虑了，删掉此测试文件
 - 新建 PageB 测试 less 文件，报错：No loader is configured for ".less"。
   解决方案：yarn add esbuild-plugin-less
+- 测试 css、module.css、less、module.less 之间的相互引用
+  css 引用 module.css
+  css 引用 less
+  css 引用 module.less

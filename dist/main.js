@@ -23517,12 +23517,12 @@
 
   // src/pages/pageA.module.css
   var pageA_default = {
-    "pageA-test-module-css-color": "pageA_pageA-test-module-css-color"
+    "pageA-test-module-background": "pageA_pageA-test-module-background"
   };
 
   // src/pages/PageA.js
   var PageA = () => {
-    return /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement("h3", { className: pageA_default["pageA-test-module-css-color"] }, "\u6211\u662FPageA\u9875\u9762 \u6D4B\u8BD5.module.css\u6587\u4EF6"));
+    return /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement("h3", { className: pageA_default["pageA-test-module-background"] }, "\u6211\u662FPageA\u9875\u9762 \u6D4B\u8BD5.module.css\u6587\u4EF6"));
   };
   var PageA_default = PageA;
 
@@ -23549,7 +23549,7 @@
 
   // main.tsx
   var App = () => {
-    return /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("p", { className: "main-test-css-color" }, "hello esbuild - \u6D4B\u8BD5css\u6587\u4EF6"), /* @__PURE__ */ import_react4.default.createElement(PageA_default, null), /* @__PURE__ */ import_react4.default.createElement("div", { style: { height: "1px", background: "#666" } }), /* @__PURE__ */ import_react4.default.createElement(PageB_default, null), /* @__PURE__ */ import_react4.default.createElement("div", { style: { height: "1px", background: "#666" } }), /* @__PURE__ */ import_react4.default.createElement(PageC_default, null));
+    return /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("p", { className: "main-test-css-background" }, "hello esbuild - \u6D4B\u8BD5css\u6587\u4EF6"), /* @__PURE__ */ import_react4.default.createElement(PageA_default, null), /* @__PURE__ */ import_react4.default.createElement("div", { style: { height: "1px", background: "#666" } }), /* @__PURE__ */ import_react4.default.createElement(PageB_default, null), /* @__PURE__ */ import_react4.default.createElement("div", { style: { height: "1px", background: "#666" } }), /* @__PURE__ */ import_react4.default.createElement(PageC_default, null));
   };
   var root = (0, import_client.createRoot)(document.getElementById("root"));
   root.render(/* @__PURE__ */ import_react4.default.createElement(App, null));
