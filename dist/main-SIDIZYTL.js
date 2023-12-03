@@ -3,7 +3,7 @@ import {
   __commonJS,
   __toESM,
   require_react
-} from "./chunk-ZHDHVPXN.js";
+} from "./js/chunk-HC55A3O4.js";
 
 // react-dom:react-dom/client
 var require_client = __commonJS({
@@ -4615,7 +4615,7 @@ var PageC = function PageC2() {
     className: pageC_module_default["pageC-test-module-less-background"]
   }, "\u6211\u662FPageC\u9875\u9762 \u6D4B\u8BD5.module.less\u6587\u4EF6"), /* @__PURE__ */ import_react2.default.createElement("button", {
     onClick: function onClick() {
-      return import("./PageA-2XC3F5VT.js").then(console.log);
+      return import("./js/PageA-EJSFD3MH.js").then(console.log);
     }
   }, "\u6D4B\u8BD5 \u901A\u8FC7import \u52A8\u6001\u5E26\u5165"));
 };
@@ -4630,7 +4630,7 @@ var __default = {
 var __default2 = '"hello \uFF0C\u6211\u662F data \u683C\u5F0F"\n\n';
 
 // src/imgs/webpack-logo.jpg
-var webpack_logo_default = "./webpack-logo-OT5JZUSR.jpg";
+var webpack_logo_default = "./assets/webpack-logo-OT5JZUSR.jpg";
 
 // main.tsx
 var App = function App2() {

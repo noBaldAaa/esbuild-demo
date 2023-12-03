@@ -67,6 +67,13 @@ const options = {
   // 开启代码分割，同时还要设置format
   splitting: true,
   format: "esm",
+  // 对资源文件分类和加内容hash
+  // 当用file loader 解析的文件都会放在这里
+  assetNames: "assets/[name]-[hash]",
+  // 对js、cs进行分类
+  chunkNames: "[ext]/[name]-[hash]",
+  // 对入口文件进行分类并加 hash
+  entryNames: "[name]-[hash]",
 
   plugins: [
     lessLoaderPlugin({
