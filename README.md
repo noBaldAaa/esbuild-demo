@@ -21,7 +21,7 @@
   css 加厂商后缀 ✅
   css 兼容 老浏览器 ✅
   js 兼容老浏览器 + 新 API 转换 ✅
-  tree shaking
+  tree shaking ✅
   基本的代码分割、分包、测试动态加载（import (xx).then(xxx)）
   提取第三方包成一个单独的包(做不到)
   文件加 hash
@@ -187,3 +187,5 @@ return console.log("jjj", obj ?? a);
 yarn add @babel/core @babel/preset-env @babel/preset-react @babel/preset-typescript
 
 可以看到 不仅将 const =>var，而且也将箭头函数转换为了普通函数，这里的 babel 同样会读取 browserslist 配置。
+
+- 开启 treeShaking，这个没啥好说的。经测试，功能没问题。

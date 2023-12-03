@@ -62,6 +62,8 @@ const options = {
   minify: false,
   // 配置兼容的浏览器或js版本
   // target: ["es2015", "chrome58", "firefox57"],
+  // 开启 tree-shaking
+  treeShaking: true,
   plugins: [
     lessLoaderPlugin({
       // 主题配置

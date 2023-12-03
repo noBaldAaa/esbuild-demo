@@ -12,6 +12,11 @@ import WEBPACK_LOGO_IMG from "@imgs/webpack-logo.jpg";
 
 import "./main.css";
 
+// 测试treeShaking
+const b = () => {
+  console.log("bbb");
+};
+
 const App = () => {
   console.log(data1, "data1");
   console.log(data2, "data2");
