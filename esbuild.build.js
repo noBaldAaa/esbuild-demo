@@ -5,6 +5,9 @@ const { lessLoader: lessLoaderPlugin } = require("esbuild-plugin-less");
 const { htmlPlugin } = require("@craftamap/esbuild-plugin-html");
 const inlineImagePlugin = require("esbuild-plugin-inline-image");
 const { clean } = require("esbuild-plugin-clean");
+const postcss = require("postcss");
+const postcssPresetEnv = require("postcss-preset-env");
+const cssVariables = require("postcss-css-variables");
 
 const entryPoints = ["main.tsx"];
 
@@ -51,13 +54,13 @@ const options = {
   // 想要用 htmlPlugin 插件，必须开启metafile
   metafile: true,
   // 配置true的话，默认就是 linked 模式，这里的模式选择：linked｜external｜inline｜both
-  sourcemap: true,
+  sourcemap: false,
   // 将这几个模块标记为外部依赖
   external: ["react", "react-dom", "lodash"],
   // 开启代码压缩
-  minify: true,
+  minify: false,
   // 配置兼容的浏览器或js版本
-  target: ["chrome55", "firefox68"],
+  // target: ["es2020", "chrome58", "edge16", "firefox57", "node12", "safari11"],
   plugins: [
     lessLoaderPlugin({
       // 主题配置
@@ -226,6 +229,24 @@ const options = {
           return {
             contents: "module.exports=window.ReactDOM",
           };
+        });
+      },
+    },
+    // 配置css兼容性问题
+    {
+      name: "postcss-plugin",
+      async setup(build) {
+        build.onLoad({ filter: /.css$/ }, async (args) => {
+          const css = await fs.promises.readFile(args.path, "utf8");
+
+          const result = await postcss([
+            postcssPresetEnv,
+            cssVariables,
+          ]).process(css, {
+            from: args.path,
+          });
+
+          return { contents: result.css, loader: "css" };
         });
       },
     },
