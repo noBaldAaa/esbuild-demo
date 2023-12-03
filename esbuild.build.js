@@ -8,6 +8,7 @@ const { clean } = require("esbuild-plugin-clean");
 const postcss = require("postcss");
 const postcssPresetEnv = require("postcss-preset-env");
 const cssVariables = require("postcss-css-variables");
+const babel = require("@babel/core");
 
 const entryPoints = ["main.tsx"];
 
@@ -60,7 +61,7 @@ const options = {
   // 开启代码压缩
   minify: false,
   // 配置兼容的浏览器或js版本
-  // target: ["es2020", "chrome58", "edge16", "firefox57", "node12", "safari11"],
+  // target: ["es2015", "chrome58", "firefox57"],
   plugins: [
     lessLoaderPlugin({
       // 主题配置
@@ -248,6 +249,58 @@ const options = {
 
           return { contents: result.css, loader: "css" };
         });
+      },
+    },
+
+    {
+      name: "esbuild-plugin-babel",
+      setup(build) {
+        const options = {
+          filter: /.ts?x$/,
+          namespace: "",
+        };
+
+        const transformContents = ({ args, contents }) => {
+          const babelOptions = babel.loadOptions({
+            // // targets: "> 0.25%, not dead",
+            // targets: {
+            //   chrome: "58",
+            //   ie: "11",
+            // },
+            filename: args.path,
+            presets: [
+              [
+                "@babel/preset-env",
+                {
+                  useBuiltIns: "usage",
+                  corejs: 3, //需要指定安装core-js的版本，我这里安装的是 "core-js": "^3.23.4"
+                },
+              ],
+              "@babel/preset-react", //预设是从前往后执行
+              "@babel/preset-typescript",
+            ],
+            // "plugins": ["@babel/plugin-transform-block-scoping"],
+            caller: {
+              name: "esbuild-plugin-babel",
+              supportsStaticESM: true,
+            },
+          });
+
+          return new Promise((resolve, reject) => {
+            babel.transform(contents, babelOptions, (error, result) => {
+              error ? reject(error) : resolve({ contents: result.code });
+            });
+          });
+        };
+
+        build.onLoad(
+          { filter: options.filter, namespace: options.namespace },
+          async (args) => {
+            const contents = await fs.promises.readFile(args.path, "utf8");
+
+            return transformContents({ args, contents });
+          }
+        );
       },
     },
   ],

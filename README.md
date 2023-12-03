@@ -19,8 +19,8 @@
   排除部分第三方包，使用 cdn（排除 react、react-dom）✅
   代码压缩（html、js、css）✅
   css 加厂商后缀 ✅
-  css 兼容 老浏览器
-  js 兼容老浏览器 + 新 API 转换
+  css 兼容 老浏览器 ✅
+  js 兼容老浏览器 + 新 API 转换 ✅
   tree shaking
   基本的代码分割、分包、测试动态加载（import (xx).then(xxx)）
   提取第三方包成一个单独的包(做不到)
@@ -167,3 +167,23 @@ xxx
 这里由于在生产环境中需要用到大量插件，所以更多的时候是使用插件的合集，也就是预设。post-css-env xxxxx
 
 从这里可以看出，esbuild 的 targets 能力其实很有限。
+
+- 同理，对于 js 来说，esbuild 只能根据 target 来解析部分 js 的语法，对于 api 同样无能为力
+
+比如 ??运算符是在 Chrome 80 中引入的，因此当面向 Chrome 79 或更早版本时，esbuild 会将其转换为等效（但更详细）的条件表达式。
+
+const a = () => {
+const obj = {};
+return console.log("jjj", obj ?? a);
+};
+
+    const a = () => {
+      const obj = {};
+      return console.log("jjj", obj != null ? obj : a);
+    };
+
+但对于 api，还是需要我们自己转换。 这个时候我们通过 babel 来转换，自己动手写一个插件：xxx
+
+yarn add @babel/core @babel/preset-env @babel/preset-react @babel/preset-typescript
+
+可以看到 不仅将 const =>var，而且也将箭头函数转换为了普通函数，这里的 babel 同样会读取 browserslist 配置。

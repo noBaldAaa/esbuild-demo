@@ -15,6 +15,11 @@ import "./main.css";
 const App = () => {
   console.log(data1, "data1");
   console.log(data2, "data2");
+
+  const a = () => {
+    const obj = {};
+    return console.log("jjj", obj ?? a);
+  };
   return (
     <div>
       <p>main.js入口文件：</p>
