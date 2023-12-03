@@ -17,7 +17,7 @@
   资源的进阶需求：当图片小于 8kb 时，转换为 base64 格式（也就是如何在 file 和 dataurl 中自由切换）✅
   source-map（没有 webpack 那么多的选项）✅
   排除部分第三方包，使用 cdn（排除 react、react-dom）✅
-  代码压缩（html、js、css）
+  代码压缩（html、js、css）✅
   css 加厂商后缀
   css 兼容 老浏览器
   js 兼容老浏览器 + 新 API 转换
@@ -138,3 +138,6 @@ https://github.com/evanw/esbuild/issues/3509
 我个人对这种解决方案很难苟同，给出了我自己的解决方案，也就是写一个 esbuild 插件解决这种问题：
 
 xxx
+
+- 接下来测试代码压缩，这可以 esbuild 的重头戏，并且是核心优势。
+  开启压缩： minify: true,使用方式很简单，速度也奇快，好用，点赞！

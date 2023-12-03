@@ -54,6 +54,8 @@ const options = {
   sourcemap: true,
   // 将这几个模块标记为外部依赖
   external: ["react", "react-dom", "lodash"],
+  // 开启代码压缩
+  minify: true,
   plugins: [
     lessLoaderPlugin({
       // 主题配置
