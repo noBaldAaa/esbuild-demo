@@ -2,4 +2,15 @@
 
 .main-test-css-background {
   background-color: #eee;
+  user-select: none;
+}
+
+:root {
+  --mainColor: rgba(18, 52, 86, 0.47059);
+}
+
+body {
+  color: var(--mainColor);
+  font-family: system-ui;
+  overflow-wrap: break-word;
 }

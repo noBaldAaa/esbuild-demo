@@ -18,7 +18,7 @@
   source-map（没有 webpack 那么多的选项）✅
   排除部分第三方包，使用 cdn（排除 react、react-dom）✅
   代码压缩（html、js、css）✅
-  css 加厂商后缀
+  css 加厂商后缀 ✅
   css 兼容 老浏览器
   js 兼容老浏览器 + 新 API 转换
   tree shaking
@@ -141,3 +141,19 @@ xxx
 
 - 接下来测试代码压缩，这可以 esbuild 的重头戏，并且是核心优势。
   开启压缩： minify: true,使用方式很简单，速度也奇快，好用，点赞！
+- 接下来是上生产前的必要准备工作，兼容 css 兼容性问题，比如 css3 中新增的属性 user-select，目前只有部分浏览器支持，其他浏览器要想也支持的话，需要我们加上前缀：
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+手动去兼容这些新特性肯定不现实，这个时候就可以用到一个工具，它能帮助我们解决这一类的问题：PostCSS 工具（它是一个通过 JavaScript 来转换样式的工具，这个工具可以帮助我们进行一些 CSS 的转换和适配，比如自动添加浏览器前缀、css 样式的重置等）。
+
+在 webapck 中一般是用 PostCSS 和相对应的插件来解决此类问题的。
+
+但在 esbuild 中很简单，只需配置需要兼容的浏览器即可。
+
+比如上面提到的 user-select 属性，在 https://caniuse.com/ 中查询到，该属性谷歌浏览器 54 版本后才支持，火狐浏览器 69 版本后才支持。在 target 中这样配置：代表我们需要支持的浏览器版本。
+
+但是有些属性仅仅加前缀是不够的，比如 var (css 变量)这个属性，谷歌 67 版本以上才支持，但我们想要在低浏览器中生效，必须要生成对应的 polliy。

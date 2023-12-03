@@ -56,6 +56,8 @@ const options = {
   external: ["react", "react-dom", "lodash"],
   // 开启代码压缩
   minify: true,
+  // 配置兼容的浏览器或js版本
+  target: ["chrome55", "firefox68"],
   plugins: [
     lessLoaderPlugin({
       // 主题配置
