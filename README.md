@@ -5,29 +5,29 @@
 ## 调研路径
 
 - 基础
-  1、是否支持 js、jsx、ts、tsx（在 js 中写 jsx）✅
-  2、是否支持简单的 css、module css、less、module less ✅（包括相互之间的引用）
-  3、是否支持字体图标 ✅
-  4、是否支持常规的图片资源（在 jsx/tsx/css/less/html 中的引用） ✅
-  5、是否支持其他不常见的图片格式处理 ✅
-  6、其他资源文件处理：.json .txt .data 等 ✅
-  7、配置路径别名缩短引用路径
-  8、html 模版 ✅
+  是否支持 js、jsx、ts、tsx（在 js 中写 jsx）✅
+  是否支持简单的 css、module css、less、module less ✅（包括相互之间的引用）
+  是否支持字体图标 ✅
+  是否支持常规的图片资源（在 jsx/tsx/css/less/html 中的引用） ✅
+  是否支持其他不常见的图片格式处理 ✅
+  其他资源文件处理：.json .txt .data 等 ✅
+  配置路径别名缩短引用路径 ✅
+  html 模版 ✅
 - 进阶
-  1、资源的进阶需求：当图片小于 8kb 时，转换为 base64 格式（也就是如何在 file 和 dataurl 中自由切换）✅
-  2、排除部分第三方包，使用 cdn（排除 react、react-dom）
-  3、代码压缩（html、js、css）
-  4、css 加厂商后缀
-  5、css 兼容 老浏览器
-  6、js 兼容老浏览器 + 新 API 转换
-  7、tree shaking
-  8、基本的代码分割、分包、测试动态加载（import (xx).then(xxx)）
-  9、提取第三方包成一个单独的包(做不到)
-  10、文件加 hash
-  11、source-map（没有 webpack 那么多的选项）
-  12、每次打包前清空 dist 目录 ）
-  13、按照打包后的文件类型进行分类
-  14、如何获取环境变量：看看是 dev 还是 prod(define 属性)
+  资源的进阶需求：当图片小于 8kb 时，转换为 base64 格式（也就是如何在 file 和 dataurl 中自由切换）✅
+  source-map（没有 webpack 那么多的选项）
+  排除部分第三方包，使用 cdn（排除 react、react-dom）
+  代码压缩（html、js、css）
+  css 加厂商后缀
+  css 兼容 老浏览器
+  js 兼容老浏览器 + 新 API 转换
+  tree shaking
+  基本的代码分割、分包、测试动态加载（import (xx).then(xxx)）
+  提取第三方包成一个单独的包(做不到)
+  文件加 hash
+  每次打包前清空 dist 目录 ）
+  按照打包后的文件类型进行分类
+  如何获取环境变量：看看是 dev 还是 prod(define 属性)
 - 可选
   1、构建前进行 ts 类型检测（可选）webpack 用这个 fork-ts-checker-webpack-plugin
   2、开发服务器
@@ -97,3 +97,22 @@
 - 当图片小于 xkb 时，转换为 base64 格式，怎么做？yarn add esbuild-plugin-inline-image
 - 每次删 dist 目录太麻烦，使用 esbuild-plugin-clean 插件
 - 配置别名，天坑来了！！！也就是 当我们 使用 @ / xx 的时候，自动替换到 src/ xx 目录下，当我们使用 @imgs 的时候自动替换到 src/imas 目录下。这生活大多数人肯定都去找 alias 这个 api 了，为啥这个项目可以！！！
+- alias 不仅支持替换路径，还支持替换包名，比如我们引入 react 的时候，这样引入，然后再 alias 中进行配：xx，这代表当匹配到 hello 这个包的时候，用 react 去加载。这个还是很有用的，比如最近华为新出了一个 react 升级版的包，如果想要一键项目替换的话就可以用到这个属性。
+- 另外，再多说一句，如果你用这个功能的时候发现了报错，可以尝试用一下社区的插件。这个功能个人认为问题还是挺多的，issue 也提了很多跟这个功能相关的 bug，笔者刚开始测试这个功能的时候踩了不少坑，社区也基于这个功能开发了好几个类似的插件。总之，你要是用这个功能不行的话，就尝试一下这个插件：xx
+- 测试 source-map，source-map 总共有四种模式：
+  linked： 生成单独的 .js.map 文件，并在 .js 文件中包含 //# sourceMappingURL= 注释。（优点：可以将源映射文件独立出来，减小生成的 .js 文件大小。）
+  external： 生成单独的 .js.map 文件，但 .js 文件不包含 //# sourceMappingURL= 注释。（源映射文件独立存储，但 .js 文件不包含显式的注释。）
+  inline： 将源映射以 base64 形式追加到 .js 文件的末尾，不生成额外的 .js.map 文件。
+  （无需额外的 .js.map 文件，方便部署，一次加载即可获取源映射信息。，缺点：由于源映射通常较大，可能会增加 .js 文件的大小。）
+  both： 同时生成 inline 和 external，即在 .js 文件末尾追加 inline，并生成单独的 .js.map 文件。（结合了 inline 和 external 的优势，可在 .js 文件中快速获取源映射信息，并且也有独立的 .js.map 文件备份。很难说这是优点还是缺点，暂时没想到应用场景）
+  生产环境使用 external 模式 或 不生成 source-map 文件。开发环境使用 inline 模式 或 linked 模式。在生产环境中使用 external 模式生成独立的 source map 文件的目的主要是为了方便开发者在需要时进行错误追踪和调试。虽然浏览器不会自动加载并关联 source map 文件，但在开发人员需要查看详细的错误信息、追溯代码来源时，这个独立的 source map 文件就变得非常有价值。
+
+  下面是一些 external 模式生成 source map 文件的用途：
+
+  错误追踪： 当在生产环境中发生错误时，错误信息可能会包含堆栈跟踪（stack trace），而这个堆栈跟踪通常是对应于生成的压缩和混淆后的代码。通过使用独立的 source map 文件，开发者可以将堆栈跟踪还原为原始的、易于理解的源代码形式，从而更容易定位和修复问题。
+
+  调试工具： 开发者可以在本地使用 source map 文件来配置浏览器的调试工具，以便在开发环境中进行更方便的调试。虽然浏览器可能不会自动加载 source map，但通过手动加载 source map，开发者可以在调试器中查看源代码，逐行调试。
+
+  版本追溯： 独立的 source map 文件通常会包含版本信息和原始源代码的相对路径等信息。这些信息可以帮助开发者追溯到特定版本的源代码，从而更好地理解和解决生产环境中的问题。
+
+  虽然 source map 文件对于生产环境来说可能增加了一些额外的开销（例如文件大小），但它们为开发者提供了在生产环境中进行追踪和调试的能力，有助于更快地响应和解决问题。在部署生产代码时，通常会确保 source map 文件不会被公开访问，以避免潜在的安全风险。

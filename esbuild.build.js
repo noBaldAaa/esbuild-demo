@@ -50,6 +50,8 @@ const options = {
   // 此选项告诉 esbuild 以 JSON 格式生成一些有关构建的元数据。以下示例将元数据放入名为 的文件中meta.json
   // 想要用 htmlPlugin 插件，必须开启metafile
   metafile: true,
+  // 配置true的话，默认就是 linked 模式，这里的模式选择：linked｜external｜inline｜both
+  sourcemap: "both",
   plugins: [
     lessLoaderPlugin({
       // 主题配置
