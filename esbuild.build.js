@@ -39,13 +39,16 @@ const options = {
     ".txt": "text", // 默认就是这个
     ".json": "json", // 默认就是这个
   },
-  // 此选项告诉 esbuild 以 JSON 格式生成一些有关构建的元数据。以下示例将元数据放入名为 的文件中meta.json
-  // 想要用 htmlPlugin 插件，必须开启metafile
+  // 配置别名，不仅可以配置路径，还可以配置包名
   alias: {
+    // 这里还运行替换包名，当识别hello 这个包时自己用成 react 包，这个功能还是很有用的，比如替换为华为最近发布的包
+    // hello: "react",
     "@": path.resolve(__dirname, "./src"),
     "@imgs": path.resolve(__dirname, "./src/imgs"),
     "@pages": path.resolve(__dirname, "./src/pages"),
   },
+  // 此选项告诉 esbuild 以 JSON 格式生成一些有关构建的元数据。以下示例将元数据放入名为 的文件中meta.json
+  // 想要用 htmlPlugin 插件，必须开启metafile
   metafile: true,
   plugins: [
     lessLoaderPlugin({
