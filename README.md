@@ -15,8 +15,8 @@
   html 模版 ✅
 - 进阶
   资源的进阶需求：当图片小于 8kb 时，转换为 base64 格式（也就是如何在 file 和 dataurl 中自由切换）✅
-  source-map（没有 webpack 那么多的选项）
-  排除部分第三方包，使用 cdn（排除 react、react-dom）
+  source-map（没有 webpack 那么多的选项）✅
+  排除部分第三方包，使用 cdn（排除 react、react-dom）✅
   代码压缩（html、js、css）
   css 加厂商后缀
   css 兼容 老浏览器
@@ -116,3 +116,25 @@
   版本追溯： 独立的 source map 文件通常会包含版本信息和原始源代码的相对路径等信息。这些信息可以帮助开发者追溯到特定版本的源代码，从而更好地理解和解决生产环境中的问题。
 
   虽然 source map 文件对于生产环境来说可能增加了一些额外的开销（例如文件大小），但它们为开发者提供了在生产环境中进行追踪和调试的能力，有助于更快地响应和解决问题。在部署生产代码时，通常会确保 source map 文件不会被公开访问，以避免潜在的安全风险。
+
+- 为了提升页面加载速度，加快打包速度，有时候我们需要将一些常用的第三方包或者依赖通过 cdn 引入，这样即能长久的使用缓存，节省带宽成本，又能提高加载速度，减小构建体积。
+
+这个时候需要用到 external 属性，比如将我们常用的 React、React-DOM、lodash 这三个包标记为外部依赖，不参与打包过程。
+
+但这个属性有个比较坑的地方是：它虽然会不打包 external 中配置的包名，但会保留它的导入语句。这是它的官网原话：
+
+You can mark a file or a package as external to exclude it from your build. Instead of being bundled, the import will be preserved (using require for the iife and cjs formats and using import for the esm format) and will be evaluated at run time instead.
+
+也就是说，虽然能排除第三方包，但是导入语句依然会被保留。
+
+举个例子：当我们项目中导入了 react，并将其标记为了外部依赖，在打包的时候：会将 import react from "react"，变成 const react from “react”。当在浏览器运行时，由于找到 react 模版，会导致报错：xxx
+
+https://github.com/evanw/esbuild/issues/3509
+
+基于这个问题，我也是很不理解，并向 esbuild 的作者提出了我的疑问：xx 作者名称虽然并未解释为什么这么做，但是给出了解决方案，也就是在 web 环境中手动实现 require 函数，并判断当加载 react 模块的时候返回 cdn 中返回的 react 变量。
+
+......
+
+我个人对这种解决方案很难苟同，给出了我自己的解决方案，也就是写一个 esbuild 插件解决这种问题：
+
+xxx

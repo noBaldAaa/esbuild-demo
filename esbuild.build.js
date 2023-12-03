@@ -51,7 +51,9 @@ const options = {
   // 想要用 htmlPlugin 插件，必须开启metafile
   metafile: true,
   // 配置true的话，默认就是 linked 模式，这里的模式选择：linked｜external｜inline｜both
-  sourcemap: "both",
+  sourcemap: true,
+  // 将这几个模块标记为外部依赖
+  external: ["react", "react-dom", "lodash"],
   plugins: [
     lessLoaderPlugin({
       // 主题配置
@@ -85,15 +87,15 @@ const options = {
           // extraScripts ((string | { src: string; attrs?: { [key: string]: string } } )[]): 额外的脚本，可以是字符串数组或包含 src 和可选 attrs 的对象。用于在HTML中插入其他脚本。
           // 这个属性相当于可以做外链
           extraScripts: [
-            // {
-            //   src: "https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js",
-            // },
-            // {
-            //   src: "https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js",
-            // },
-            // {
-            //   src: "https://mks-test.mypaas.com/lodash.min.js",
-            // },
+            {
+              src: "https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js",
+            },
+            {
+              src: "https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js",
+            },
+            {
+              src: "https://mks-test.mypaas.com/lodash.min.js",
+            },
           ],
           // hash (boolean | string): 为所有包含的脚本和CSS文件附加哈希以进行缓存破坏。哈希基于给定的字符串。如果给定一个布尔值，哈希基于当前时间。
           // 为引入的 js 和 css 添加hash，但是感觉不太好这里，因为使用的是时间戳
@@ -191,6 +193,38 @@ const options = {
       extensions: ["jpg", "jpeg", "png", "gif", "svg", "webp", "avif"], // 要处理的文件格式，默认为这些
     }),
     clean({ patterns: "dist/*" }),
+    // 排除第三方包插件，配合 external 属性使用
+    {
+      name: "external-plugin",
+      setup(build) {
+        build.onResolve({ filter: /^lodash$/ }, (args) => {
+          return { path: args.path, namespace: "lodash" };
+        });
+        build.onLoad({ filter: /.*/, namespace: "lodash" }, (args) => {
+          return {
+            contents: "module.exports=window._",
+          };
+        });
+
+        build.onResolve({ filter: /^react$/ }, (args) => {
+          return { path: args.path, namespace: "react" };
+        });
+        build.onLoad({ filter: /.*/, namespace: "react" }, (args) => {
+          return {
+            contents: "module.exports=window.React",
+          };
+        });
+
+        build.onResolve({ filter: /^react-dom/ }, (args) => {
+          return { path: args.path, namespace: "react-dom" };
+        });
+        build.onLoad({ filter: /.*/, namespace: "react-dom" }, (args) => {
+          return {
+            contents: "module.exports=window.ReactDOM",
+          };
+        });
+      },
+    },
   ],
 };
 
