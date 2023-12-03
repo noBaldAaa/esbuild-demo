@@ -38,7 +38,7 @@
 
 - yarn init
 - yarn add react react-dom typescript
-- npx tsx --init
+- npx tsc --init
 - 修改部分配置 yarn add @types/react @types/react-dom
 - 配置基础的 esbuild 配置文件，并尝试打包
 - 在 dist 目录下手动生成一个 html 模版文件，并看 react 有没有成功生效
@@ -61,6 +61,7 @@
 - 在 css、js、html 中引入图片成功
 - 支持其他不常见的图片格式处理：可以使用 file loader 或 dataurl 进行处理
 - 对 data、txt、json 文件进行解析
+
 - loader 总结：在 esbuild 中，loader 用于处理不同类型的文件，并将它们转换为 JavaScript 模块或其他适当的输出。以下是一些常见的 loader 类型及其作用：
   1、js (JavaScript Loader): 处理 JavaScript 文件。
   例子： import 或 require JavaScript 文件时，该 loader 将处理这些文件。
@@ -100,6 +101,7 @@
 - 配置别名，天坑来了！！！也就是 当我们 使用 @ / xx 的时候，自动替换到 src/ xx 目录下，当我们使用 @imgs 的时候自动替换到 src/imas 目录下。这生活大多数人肯定都去找 alias 这个 api 了，为啥这个项目可以！！！
 - alias 不仅支持替换路径，还支持替换包名，比如我们引入 react 的时候，这样引入，然后再 alias 中进行配：xx，这代表当匹配到 hello 这个包的时候，用 react 去加载。这个还是很有用的，比如最近华为新出了一个 react 升级版的包，如果想要一键项目替换的话就可以用到这个属性。
 - 另外，再多说一句，如果你用这个功能的时候发现了报错，可以尝试用一下社区的插件。这个功能个人认为问题还是挺多的，issue 也提了很多跟这个功能相关的 bug，笔者刚开始测试这个功能的时候踩了不少坑，社区也基于这个功能开发了好几个类似的插件。总之，你要是用这个功能不行的话，就尝试一下这个插件：xx
+
 - 测试 source-map，source-map 总共有四种模式：
   linked： 生成单独的 .js.map 文件，并在 .js 文件中包含 //# sourceMappingURL= 注释。（优点：可以将源映射文件独立出来，减小生成的 .js 文件大小。）
   external： 生成单独的 .js.map 文件，但 .js 文件不包含 //# sourceMappingURL= 注释。（源映射文件独立存储，但 .js 文件不包含显式的注释。）

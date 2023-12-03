@@ -40,7 +40,7 @@ const options = {
 
     ".jpg": "dataurl",
 
-    ".txt": "text", // 默认就是这个
+    ".txt": "text",
     ".json": "json", // 默认就是这个
   },
   // 配置别名，不仅可以配置路径，还可以配置包名
@@ -128,12 +128,14 @@ const options = {
     }),
     // copy plugin
     {
-      name: "copy",
+      name: "copy-plugin", // 插件的名称
       setup(build) {
+        // 辅助函数，用于检查给定字符串是否是文件路径
         function isPathToFile(str) {
           return !!path.extname(str);
         }
 
+        // 辅助函数，用于同步复制文件
         function copyFileSync(source, target) {
           if (isPathToFile(target)) {
             const targetDir = path.dirname(target);
@@ -152,6 +154,7 @@ const options = {
           }
         }
 
+        // 辅助函数，用于递归同步复制文件夹
         function copyFolderRecursiveSync(source, target, copyWithFolder) {
           if (copyWithFolder) {
             const folder = path.join(target, path.basename(source));
@@ -182,31 +185,38 @@ const options = {
           }
         }
 
+        // 主要复制函数，可以处理单个文件、单个文件夹、多个文件、多个文件夹
         function copy({ source, target, copyWithFolder }) {
           if (Array.isArray(target)) {
+            // 如果 target 是数组，逐个处理
             target.forEach((targetItem) => {
               copy({ source, target: targetItem, copyWithFolder });
             });
           } else if (Array.isArray(source) && !Array.isArray(target)) {
+            // 如果 source 是数组而 target 不是数组，逐个处理
             source.forEach((sourceItem) => {
               copy({ source: sourceItem, target, copyWithFolder });
             });
           } else if (fs.existsSync(source)) {
+            // 如果 source 存在
             if (fs.lstatSync(source).isFile()) {
+              // 如果 source 是文件，直接复制文件
               copyFileSync(source, target);
             } else if (fs.lstatSync(source).isDirectory()) {
+              // 如果 source 是文件夹，递归复制文件夹
               copyFolderRecursiveSync(source, target, copyWithFolder);
             }
           }
         }
 
+        // 配置复制的选项，这里不支持 *，后面可以写个支持的插件
         const copyOptions = {
-          // 这里不支持配置 * 号，后续可以自己写一个esbuild的复制插件
-          source: ["./public/juejin.svg"],
-          target: "./dist",
-          // 是否把父文件夹复制过去，false就是只复制该文件夹下的内容
-          copyWithFolder: false, // will copy "images" folder with all files inside
+          source: ["./public/juejin.svg"], // 源文件或文件夹路径，可以是数组
+          target: "./dist", // 目标文件夹路径
+          copyWithFolder: false, // 是否把父文件夹复制过去，false 就是只复制该文件夹下的内容
         };
+
+        // 在 esbuild 完成构建后触发的回调，执行复制操作
         build.onEnd(() => copy(copyOptions));
       },
     },
