@@ -1712,6 +1712,11 @@ core-js-compat@^3.31.0, core-js-compat@^3.33.1:
   dependencies:
     browserslist "^4.22.1"
 
+core-js@^3.33.3:
+  version "3.33.3"
+  resolved "https://registry.npmmirror.com/core-js/-/core-js-3.33.3.tgz#3c644a323f0f533a0d360e9191e37f7fc059088d"
+  integrity sha512-lo0kOocUlLKmm6kv/FswQL8zbkH7mVsLJ/FULClOhv8WRVmKLVcs6XPNQAzstfeJTCHMyButEwG+z1kHxHoDZw==
+
 css-blank-pseudo@^6.0.0:
   version "6.0.0"
   resolved "https://registry.npmmirror.com/css-blank-pseudo/-/css-blank-pseudo-6.0.0.tgz#2bc6f812a5f60296c04c55b1696bad4300dcdbcc"

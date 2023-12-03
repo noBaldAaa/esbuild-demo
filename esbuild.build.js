@@ -64,6 +64,10 @@ const options = {
   // target: ["es2015", "chrome58", "firefox57"],
   // 开启 tree-shaking
   treeShaking: true,
+  // 开启代码分割，同时还要设置format
+  splitting: true,
+  format: "esm",
+
   plugins: [
     lessLoaderPlugin({
       // 主题配置
@@ -88,7 +92,7 @@ const options = {
             name: "不要秃头啊",
           },
           // scriptLoading ('blocking' | 'defer' | 'module'): 决定是否将脚本标签插入为阻塞脚本标签，带有 defer=""（默认），或带有 type="module"。
-          scriptLoading: "",
+          scriptLoading: "module",
           // findRelatedCssFiles (boolean): 查找相关的输出 *.css 文件并将它们注入到HTML中。默认为 true。
           findRelatedCssFiles: true,
           // 默认为false，开启后相当于将所有的css,js文件全部放在html文件中，这样相当于只需要用到html文件
@@ -253,7 +257,7 @@ const options = {
         });
       },
     },
-
+    // 配置babel插件
     {
       name: "esbuild-plugin-babel",
       setup(build) {

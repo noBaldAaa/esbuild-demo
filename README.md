@@ -22,8 +22,8 @@
   css 兼容 老浏览器 ✅
   js 兼容老浏览器 + 新 API 转换 ✅
   tree shaking ✅
-  基本的代码分割、分包、测试动态加载（import (xx).then(xxx)）
-  提取第三方包成一个单独的包(做不到)
+  基本的代码分割、分包、测试动态加载（import (xx).then(xxx)）🙅‍♂️
+  提取第三方包成一个单独的包(做不到) 🙅‍♂️
   文件加 hash
   每次打包前清空 dist 目录 ）
   按照打包后的文件类型进行分类
@@ -184,8 +184,19 @@ return console.log("jjj", obj ?? a);
 
 但对于 api，还是需要我们自己转换。 这个时候我们通过 babel 来转换，自己动手写一个插件：xxx
 
-yarn add @babel/core @babel/preset-env @babel/preset-react @babel/preset-typescript
+yarn add core-js @babel/core @babel/preset-env @babel/preset-react @babel/preset-typescript
 
 可以看到 不仅将 const =>var，而且也将箭头函数转换为了普通函数，这里的 babel 同样会读取 browserslist 配置。
 
 - 开启 treeShaking，这个没啥好说的。经测试，功能没问题。
+- 接下来是代码分割，我们需要将动态引入的包，以及第三方包拆分出去，经测试，很鸡肋，且没有相关的插件解决: splitting: true,同时还要设置 format: "esm"
+
+  // 开启代码分割，同时还要设置 format
+  splitting: true,
+  format: "esm",
+  <!-- 设置htmlPlugin -->
+
+  scriptLoading: "module",
+  npx http-server
+
+  比如我多个地方都使用到了 antd 组件，我希望将 antd 单独打包出去，实现不了。鸡肋。
