@@ -27,7 +27,7 @@
   文件加 hash✅
   按照打包后的文件类型进行分类 ✅
   每次打包前清空 dist 目录 ）✅
-  如何获取环境变量：看看是 dev 还是 prod(define 属性)
+  如何获取环境变量：看看是 dev 还是 prod(define 属性) ✅
 
 - 可选
   1、构建前进行 ts 类型检测（可选）webpack 用这个 fork-ts-checker-webpack-plugin
@@ -211,3 +211,8 @@ yarn add core-js @babel/core @babel/preset-env @babel/preset-react @babel/preset
   // 对入口文件进行分类并加 hash
   entryNames: "[name]-[hash]",
 - 打包前清空 dist 目录：yarn add esbuild-plugin-clean
+- 在 esbuild 中，你可以使用 define 属性来设置环境变量。这可以通过在构建过程中替换代码中的特定字符串来实现。以下是如何使用 define 属性在 esbuild 中获取环境变量的示例：
+  "build": "NODE_ENV=production node ./esbuild.build.js"
+  define: {
+  "process.env.NODE_ENV": `"${process.env.NODE_ENV || false}"`, // 设置 NODE_ENV
+  },

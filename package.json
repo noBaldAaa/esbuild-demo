@@ -5,7 +5,7 @@
   "author": "wxy <102939294+noBaldAaa@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
-    "build": "node ./esbuild.build.js"
+    "build": "NODE_ENV=production node ./esbuild.build.js"
   },
   "dependencies": {
     "@babel/core": "^7.23.5",

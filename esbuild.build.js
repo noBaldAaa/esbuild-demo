@@ -74,7 +74,9 @@ const options = {
   chunkNames: "[ext]/[name]-[hash]",
   // 对入口文件进行分类并加 hash
   entryNames: "[name]-[hash]",
-
+  define: {
+    "process.env.NODE_ENV": `"${process.env.NODE_ENV || false}"`, // 设置 NODE_ENV
+  },
   plugins: [
     lessLoaderPlugin({
       // 主题配置

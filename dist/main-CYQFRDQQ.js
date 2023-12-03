@@ -203,9 +203,9 @@ var require_engine_v8_version = __commonJS({
     "use strict";
     var global2 = require_global();
     var userAgent = require_engine_user_agent();
-    var process = global2.process;
+    var process2 = global2.process;
     var Deno2 = global2.Deno;
-    var versions = process && process.versions || Deno2 && Deno2.version;
+    var versions = process2 && process2.versions || Deno2 && Deno2.version;
     var v8 = versions && versions.v8;
     var match;
     var version;
@@ -1625,7 +1625,7 @@ var require_task = __commonJS({
     var IS_NODE = require_engine_is_node();
     var set = global2.setImmediate;
     var clear = global2.clearImmediate;
-    var process = global2.process;
+    var process2 = global2.process;
     var Dispatch = global2.Dispatch;
     var Function2 = global2.Function;
     var MessageChannel = global2.MessageChannel;
@@ -1674,7 +1674,7 @@ var require_task = __commonJS({
       };
       if (IS_NODE) {
         defer = function(id) {
-          process.nextTick(runner(id));
+          process2.nextTick(runner(id));
         };
       } else if (Dispatch && Dispatch.now) {
         defer = function(id) {
@@ -1773,7 +1773,7 @@ var require_microtask = __commonJS({
     var IS_NODE = require_engine_is_node();
     var MutationObserver = global2.MutationObserver || global2.WebKitMutationObserver;
     var document2 = global2.document;
-    var process = global2.process;
+    var process2 = global2.process;
     var Promise2 = global2.Promise;
     var queueMicrotaskDescriptor = getOwnPropertyDescriptor(global2, "queueMicrotask");
     var microtask = queueMicrotaskDescriptor && queueMicrotaskDescriptor.value;
@@ -1786,7 +1786,7 @@ var require_microtask = __commonJS({
       queue = new Queue();
       flush = function() {
         var parent, fn;
-        if (IS_NODE && (parent = process.domain))
+        if (IS_NODE && (parent = process2.domain))
           parent.exit();
         while (fn = queue.get())
           try {
@@ -1815,7 +1815,7 @@ var require_microtask = __commonJS({
         };
       } else if (IS_NODE) {
         notify = function() {
-          process.nextTick(flush);
+          process2.nextTick(flush);
         };
       } else {
         macrotask = bind(macrotask, global2);
@@ -2001,7 +2001,7 @@ var require_es_promise_constructor = __commonJS({
     var PromisePrototype = NativePromisePrototype;
     var TypeError2 = global2.TypeError;
     var document2 = global2.document;
-    var process = global2.process;
+    var process2 = global2.process;
     var newPromiseCapability = newPromiseCapabilityModule.f;
     var newGenericPromiseCapability = newPromiseCapability;
     var DISPATCH_EVENT = !!(document2 && document2.createEvent && global2.dispatchEvent);
@@ -2099,7 +2099,7 @@ var require_es_promise_constructor = __commonJS({
         if (IS_UNHANDLED) {
           result = perform(function() {
             if (IS_NODE) {
-              process.emit("unhandledRejection", value, promise);
+              process2.emit("unhandledRejection", value, promise);
             } else
               dispatchEvent(UNHANDLED_REJECTION, promise, value);
           });
@@ -2116,7 +2116,7 @@ var require_es_promise_constructor = __commonJS({
       call(task, global2, function() {
         var promise = state.facade;
         if (IS_NODE) {
-          process.emit("rejectionHandled", promise);
+          process2.emit("rejectionHandled", promise);
         } else
           dispatchEvent(REJECTION_HANDLED, promise, state.value);
       });
@@ -2200,7 +2200,7 @@ var require_es_promise_constructor = __commonJS({
         state.parent = true;
         reaction.ok = isCallable(onFulfilled) ? onFulfilled : true;
         reaction.fail = isCallable(onRejected) && onRejected;
-        reaction.domain = IS_NODE ? process.domain : void 0;
+        reaction.domain = IS_NODE ? process2.domain : void 0;
         if (state.state === PENDING)
           state.reactions.add(reaction);
         else
@@ -4634,6 +4634,7 @@ var webpack_logo_default = "./assets/webpack-logo-OT5JZUSR.jpg";
 
 // main.tsx
 var App = function App2() {
+  console.log("production", "process.env.NODE_ENV");
   console.log(__default, "data1");
   console.log(__default2, "data2");
   var a = function a2() {

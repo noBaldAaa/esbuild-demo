@@ -18,6 +18,8 @@ const b = () => {
 };
 
 const App = () => {
+  console.log(process.env.NODE_ENV, "process.env.NODE_ENV");
+
   console.log(data1, "data1");
   console.log(data2, "data2");
 
