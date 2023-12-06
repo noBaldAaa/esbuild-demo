@@ -128,98 +128,138 @@ const options = {
     }),
     // copy plugin
     {
-      name: "copy-plugin", // 插件的名称
+      name: "copy-plugin",
       setup(build) {
-        // 辅助函数，用于检查给定字符串是否是文件路径
-        function isPathToFile(str) {
-          return !!path.extname(str);
-        }
-
         // 辅助函数，用于同步复制文件
         function copyFileSync(source, target) {
-          if (isPathToFile(target)) {
-            const targetDir = path.dirname(target);
+          // 获取目标文件夹路径
+          const targetDir = path.dirname(target);
 
-            if (!fs.existsSync(targetDir)) {
-              fs.mkdirSync(targetDir, { recursive: true });
-            }
-
-            fs.copyFileSync(source, target);
-          } else {
-            if (!fs.existsSync(target)) {
-              fs.mkdirSync(target, { recursive: true });
-            }
-
-            fs.copyFileSync(source, path.join(target, path.basename(source)));
+          // 如果目标文件夹不存在，创建它（包括多层目录）
+          if (!fs.existsSync(targetDir)) {
+            fs.mkdirSync(targetDir, { recursive: true });
           }
+
+          // 获取目标文件路径，使用源文件的基本文件名
+          const targetFile = path.join(target, path.basename(source));
+
+          // 同步复制文件
+          fs.copyFileSync(source, targetFile);
         }
 
-        // 辅助函数，用于递归同步复制文件夹
-        function copyFolderRecursiveSync(source, target, copyWithFolder) {
-          if (copyWithFolder) {
-            const folder = path.join(target, path.basename(source));
-
-            if (!fs.existsSync(folder)) {
-              fs.mkdirSync(folder, { recursive: true });
+        // 主要复制函数，source 是数组，遍历处理每个文件
+        function copy({ source, target }) {
+          source.forEach((sourceItem) => {
+            // 如果文件存在，进行复制
+            if (fs.existsSync(sourceItem)) {
+              copyFileSync(sourceItem, target);
             }
-
-            return copyFolderRecursiveSync(source, folder);
-          }
-
-          if (!fs.existsSync(target)) {
-            fs.mkdirSync(target, { recursive: true });
-          }
-
-          if (fs.lstatSync(source).isDirectory()) {
-            const files = fs.readdirSync(source);
-
-            files.forEach((file) => {
-              const curSource = path.join(source, file);
-
-              if (fs.lstatSync(curSource).isDirectory()) {
-                copyFolderRecursiveSync(curSource, path.join(target, file));
-              } else {
-                copyFileSync(curSource, target);
-              }
-            });
-          }
+          });
         }
 
-        // 主要复制函数，可以处理单个文件、单个文件夹、多个文件、多个文件夹
-        function copy({ source, target, copyWithFolder }) {
-          if (Array.isArray(target)) {
-            // 如果 target 是数组，逐个处理
-            target.forEach((targetItem) => {
-              copy({ source, target: targetItem, copyWithFolder });
-            });
-          } else if (Array.isArray(source) && !Array.isArray(target)) {
-            // 如果 source 是数组而 target 不是数组，逐个处理
-            source.forEach((sourceItem) => {
-              copy({ source: sourceItem, target, copyWithFolder });
-            });
-          } else if (fs.existsSync(source)) {
-            // 如果 source 存在
-            if (fs.lstatSync(source).isFile()) {
-              // 如果 source 是文件，直接复制文件
-              copyFileSync(source, target);
-            } else if (fs.lstatSync(source).isDirectory()) {
-              // 如果 source 是文件夹，递归复制文件夹
-              copyFolderRecursiveSync(source, target, copyWithFolder);
-            }
-          }
-        }
-
-        // 配置复制的选项，这里不支持 *，后面可以写个支持的插件
+        // 配置复制的选项
         const copyOptions = {
           source: ["./public/juejin.svg"], // 源文件或文件夹路径，可以是数组
           target: "./dist", // 目标文件夹路径
-          copyWithFolder: false, // 是否把父文件夹复制过去，false 就是只复制该文件夹下的内容
         };
 
         // 在 esbuild 完成构建后触发的回调，执行复制操作
         build.onEnd(() => copy(copyOptions));
       },
     },
+    // {
+    //   name: "copy-plugin", // 插件的名称
+    //   setup(build) {
+    //     // 辅助函数，用于检查给定字符串是否是文件路径
+    //     function isPathToFile(str) {
+    //       return !!path.extname(str);
+    //     }
+
+    //     // 辅助函数，用于同步复制文件
+    //     function copyFileSync(source, target) {
+    //       if (isPathToFile(target)) {
+    //         const targetDir = path.dirname(target);
+
+    //         if (!fs.existsSync(targetDir)) {
+    //           fs.mkdirSync(targetDir, { recursive: true });
+    //         }
+
+    //         fs.copyFileSync(source, target);
+    //       } else {
+    //         if (!fs.existsSync(target)) {
+    //           fs.mkdirSync(target, { recursive: true });
+    //         }
+
+    //         fs.copyFileSync(source, path.join(target, path.basename(source)));
+    //       }
+    //     }
+
+    //     // 辅助函数，用于递归同步复制文件夹
+    //     function copyFolderRecursiveSync(source, target, copyWithFolder) {
+    //       if (copyWithFolder) {
+    //         const folder = path.join(target, path.basename(source));
+
+    //         if (!fs.existsSync(folder)) {
+    //           fs.mkdirSync(folder, { recursive: true });
+    //         }
+
+    //         return copyFolderRecursiveSync(source, folder);
+    //       }
+
+    //       if (!fs.existsSync(target)) {
+    //         fs.mkdirSync(target, { recursive: true });
+    //       }
+
+    //       if (fs.lstatSync(source).isDirectory()) {
+    //         const files = fs.readdirSync(source);
+
+    //         files.forEach((file) => {
+    //           const curSource = path.join(source, file);
+
+    //           if (fs.lstatSync(curSource).isDirectory()) {
+    //             copyFolderRecursiveSync(curSource, path.join(target, file));
+    //           } else {
+    //             copyFileSync(curSource, target);
+    //           }
+    //         });
+    //       }
+    //     }
+
+    //     // 主要复制函数，可以处理单个文件、单个文件夹、多个文件、多个文件夹
+    //     function copy({ source, target, copyWithFolder }) {
+    //       if (Array.isArray(target)) {
+    //         // 如果 target 是数组，逐个处理
+    //         target.forEach((targetItem) => {
+    //           copy({ source, target: targetItem, copyWithFolder });
+    //         });
+    //       } else if (Array.isArray(source) && !Array.isArray(target)) {
+    //         // 如果 source 是数组而 target 不是数组，逐个处理
+    //         source.forEach((sourceItem) => {
+    //           copy({ source: sourceItem, target, copyWithFolder });
+    //         });
+    //       } else if (fs.existsSync(source)) {
+    //         // 如果 source 存在
+    //         if (fs.lstatSync(source).isFile()) {
+    //           // 如果 source 是文件，直接复制文件
+    //           copyFileSync(source, target);
+    //         } else if (fs.lstatSync(source).isDirectory()) {
+    //           // 如果 source 是文件夹，递归复制文件夹
+    //           copyFolderRecursiveSync(source, target, copyWithFolder);
+    //         }
+    //       }
+    //     }
+
+    //     // 配置复制的选项，这里不支持 *，后面可以写个支持的插件
+    //     const copyOptions = {
+    //       source: ["./public/juejin.svg"], // 源文件或文件夹路径，可以是数组
+    //       target: "./dist", // 目标文件夹路径
+    //       copyWithFolder: false, // 是否把父文件夹复制过去，false 就是只复制该文件夹下的内容
+    //     };
+
+    //     // 在 esbuild 完成构建后触发的回调，执行复制操作
+    //     build.onEnd(() => copy(copyOptions));
+    //   },
+    // },
     inlineImagePlugin({
       limit: 3 * 1024, // 默认为10000，超过这个数用file loader，否则用dataurl loader
       // 这里如果 loader 中配置了 png 格式用 file loader，但是插件这里又配了，以这里的为准

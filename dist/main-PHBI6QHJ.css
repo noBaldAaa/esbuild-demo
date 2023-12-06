@@ -20,7 +20,7 @@ div p {
 
 /* src/pages/pageC.module.less */
 .pageC_module_pageC-test-module-less-background {
-  background-color: #666;
+  background-color: "#666";
 }
 
 /* src/font/iconfont.css */
