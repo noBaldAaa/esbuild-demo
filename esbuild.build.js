@@ -21,7 +21,7 @@ const options = {
   outdir: "dist",
   // esbuild 默认会解析以下文件类型：.js .jsx .ts .tsx .json .css .txt .png .jpg .jpeg .gif .svg .ico
   loader: {
-    ".js": "jsx", // 默认是 .js:js
+    ".js": "js", // 默认是 .js:js
     ".ts": "tsx", // 默认是 .ts:ts
     ".tsx": "tsx", // 默认就支持
     ".jsx": "jsx", // 默认就支持
@@ -117,7 +117,7 @@ const options = {
               src: "https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js",
             },
             {
-              src: "https://mks-test.mypaas.com/lodash.min.js",
+              src: "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js",
             },
           ],
           // hash (boolean | string): 为所有包含的脚本和CSS文件附加哈希以进行缓存破坏。哈希基于给定的字符串。如果给定一个布尔值，哈希基于当前时间。
